@@ -53,34 +53,10 @@ const TypingMessages = () => {
   );
 };
 
-// ── 2. Navbar Component ──
-const Navbar = ({ onStart }: { onStart: () => void }) => {
-  return (
-    <header className="fixed top-8 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 pointer-events-none">
-      <nav className="pointer-events-auto backdrop-blur-xl bg-white/10 rounded-full border border-black/5 px-8 py-4 flex items-center justify-between shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
-        <div className="font-instrument text-[32px] tracking-tight text-[#1a1a1a] select-none">dot.</div>
-        <div className="hidden md:flex gap-12 font-sans text-[15px] font-medium text-[#1a1a1a]">
-          <a href="#" className="hover:opacity-40 transition-opacity">Philosophy</a>
-          <a href="#" className="hover:opacity-40 transition-opacity">Trust</a>
-          <a href="#" className="hover:opacity-40 transition-opacity">Access</a>
-          <a href="#" className="hover:opacity-40 transition-opacity">Tribe</a>
-        </div>
-        <button 
-          onClick={onStart}
-          className="group relative bg-[#0871E7] text-white font-sans text-[15px] font-bold px-8 py-3 rounded-full shadow-[inset_0_-4px_4px_rgba(255,255,255,0.3)] outline-1 outline-[#0871E7] -outline-offset-1 transition-all hover:shadow-[0_8px_20px_rgba(8,113,231,0.4)] cursor-pointer"
-        >
-          <div className="absolute w-[85%] h-5 left-[7.5%] top-[1px] bg-gradient-to-b from-[#DEF0FC] to-transparent rounded-[14px] group-hover:scale-x-110 transition-transform origin-center" />
-          <span className="relative z-10">Link up</span>
-        </button>
-      </nav>
-    </header>
-  );
-};
-
 // ── 3. Hero Component ──
 const Hero = ({ onStart }: { onStart: () => void }) => {
   return (
-    <section className="relative min-h-screen bg-[#F3F4ED] pt-32 md:pt-48 flex flex-col items-center overflow-hidden">
+    <section className="relative min-h-screen bg-[#F3F4ED] flex flex-col items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <video 
           autoPlay 
@@ -94,30 +70,32 @@ const Hero = ({ onStart }: { onStart: () => void }) => {
         <div className="absolute inset-0 bg-white/5" />
       </div>
 
-      <div className="relative z-20 pointer-events-none text-center px-6 max-w-4xl">
+      <div className="relative z-20 pointer-events-none text-center px-6 max-w-6xl -translate-y-24">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="font-instrument text-[48px] md:text-[72px] lg:text-[96px] leading-[0.85] tracking-tight text-[#1a1a1a] mb-10"
+          className="font-instrument text-[64px] md:text-[96px] lg:text-[124px] leading-[0.8] tracking-tighter text-[#1a1a1a] mb-10"
         >
-          Short notes. <br /> Daily calm.
+          Event Flow. <br /> Ingested Calm.
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans text-[18px] md:text-[20px] text-[#1a1a1a]/80 leading-relaxed font-normal max-w-2xl mx-auto mb-12"
+          className="font-sans text-[20px] md:text-[24px] text-[#1a1a1a]/85 leading-relaxed font-normal max-w-3xl mx-auto mb-16"
         >
-          Linked with a single anonymous peer. One message every day. <br className="hidden md:block" /> A quiet rhythm in the digital noise.
+          High-performance, fault-tolerant ingestion engine for unstructured data. <br className="hidden md:block" /> 
+          Normalize, deduplicate, and aggregate millions of events with real-time reliability.
         </motion.div>
         
-        <div className="pointer-events-auto mt-4">
+        <div className="pointer-events-auto">
           <button 
             onClick={onStart}
-            className="bg-[#1a1a1a] text-white px-12 py-5 rounded-full font-sans text-[18px] font-semibold hover:bg-black hover:scale-105 active:scale-95 transition-all shadow-2xl cursor-pointer"
+            className="group relative bg-[#1a1a1a] text-white px-20 py-7 rounded-full font-sans text-[22px] font-bold hover:scale-105 active:scale-95 transition-all shadow-[0_25px_60px_rgba(0,0,0,0.4)] cursor-pointer overflow-hidden"
           >
-            Try now
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            <span className="relative z-10">Get Started</span>
           </button>
         </div>
       </div>
@@ -138,7 +116,6 @@ export default function App() {
   if (!showDashboard) {
     return (
       <main className="antialiased">
-        <Navbar onStart={() => setShowDashboard(true)} />
         <Hero onStart={() => setShowDashboard(true)} />
       </main>
     );
