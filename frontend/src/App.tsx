@@ -49,7 +49,7 @@ const TypingMessages = () => {
 // ── 3. Hero Component ──
 const Hero = ({ onStart }: { onStart: () => void }) => {
   return (
-    <section className="relative min-h-screen bg-[#F3F4ED] flex flex-col items-center justify-start pt-48 md:pt-64 overflow-hidden">
+    <section className="relative min-h-screen bg-[#F3F4ED] flex flex-col items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <video 
           autoPlay 
@@ -63,7 +63,7 @@ const Hero = ({ onStart }: { onStart: () => void }) => {
         <div className="absolute inset-0 bg-white/5" />
       </div>
 
-      <div className="relative z-20 pointer-events-auto">
+      <div className="relative z-20 pointer-events-auto -translate-y-32">
         <motion.button 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
