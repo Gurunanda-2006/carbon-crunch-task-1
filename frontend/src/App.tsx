@@ -4,12 +4,18 @@ import { SubmitForm } from './components/SubmitForm';
 import { EventsTable } from './components/EventsTable';
 import { AggregationPanel } from './components/AggregationPanel';
 import { ToastContainer, useToast } from './components/Toast';
+import { LandingPage } from './components/LandingPage';
 
 export default function App() {
+  const [showDashboard, setShowDashboard] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const { toasts, addToast, removeToast } = useToast();
 
   const handleRefresh = () => setRefreshTrigger(n => n + 1);
+
+  if (!showDashboard) {
+    return <LandingPage onStart={() => setShowDashboard(true)} />;
+  }
 
   return (
     <div className="app-layout">
