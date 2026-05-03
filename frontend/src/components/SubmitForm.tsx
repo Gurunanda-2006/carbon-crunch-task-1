@@ -3,7 +3,7 @@ import { api } from '../api';
 import type { IngestRequest } from '../types';
 
 // Example payloads to help evaluators test quickly
-const EXAMPLE_PAYLOADS: Record<string, object> = {
+const EXAMPLE_PAYLOADS: Record<string, { source: string; payload: object }> = {
   standard: {
     source: 'sensor-42',
     payload: {
@@ -74,7 +74,7 @@ export function SubmitForm({ onSubmitSuccess, onToast }: SubmitFormProps) {
   };
 
   const loadExample = (key: string) => {
-    const ex = EXAMPLE_PAYLOADS[key] as { source: string; payload: object };
+    const ex = EXAMPLE_PAYLOADS[key];
     setSource(ex.source);
     setPayloadText(JSON.stringify(ex.payload, null, 2));
     setJsonError('');
