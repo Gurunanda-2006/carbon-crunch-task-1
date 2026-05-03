@@ -34,21 +34,34 @@ const TypingMessages = () => {
         setIndex((prev) => (prev + 1) % messages.length);
       }
     };
-
-    const timer = setTimeout(handleTyping, speed);
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, index, messages, speed]);
+    const timer = setInterval(() => {
+      setCurrentMessage((prev) => (prev + 1) % messages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div className="absolute left-[48.5%] md:left-[47.5%] lg:left-[48.5%] -translate-x-1/2 bottom-[32%] z-30 w-[110px] sm:w-[130px] flex justify-start text-left">
-      <p className="font-nokia text-[#2A3616] text-[10px] sm:text-[14px] leading-tight break-words min-h-[1.5em]">
-        {text}
-        <motion.span
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-          className="inline-block w-1.5 h-3 bg-[#2A3616] ml-1 align-middle"
-        />
-      </p>
+    <div className="absolute bottom-[-12%] md:bottom-[-18%] left-1/2 -translate-x-1/2 scale-[0.6] md:scale-[0.75] lg:scale-[0.85] pointer-events-none select-none z-10">
+      <img src="https://mintlify.s3.us-west-1.amazonaws.com/dot-2/phone.png" alt="Phone" className="w-[320px] md:w-[400px]" />
+      <div className="absolute top-[31%] left-[17%] right-[18%] bottom-[32%] flex flex-col justify-center items-center">
+        <motion.div
+          key={currentMessage}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.5 }}
+          className="font-nokia text-[#1a1a1a] text-[14px] md:text-[18px] text-center leading-tight tracking-tighter"
+        >
+          {messages[currentMessage]}
+          <motion.span
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 0.8, repeat: Infinity }}
+            className="inline-block ml-0.5"
+          >
+            _
+          </motion.span>
+        </motion.div>
+      </div>
     </div>
   );
 };
@@ -56,7 +69,7 @@ const TypingMessages = () => {
 // ── 3. Hero Component ──
 const Hero = ({ onStart }: { onStart: () => void }) => {
   return (
-    <section className="relative min-h-screen bg-[#F3F4ED] flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen bg-[#F3F4ED] flex flex-col items-center justify-start pt-24 md:pt-32 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <video 
           autoPlay 
@@ -70,29 +83,29 @@ const Hero = ({ onStart }: { onStart: () => void }) => {
         <div className="absolute inset-0 bg-white/5" />
       </div>
 
-      <div className="relative z-20 pointer-events-none text-center px-6 max-w-6xl -translate-y-24">
+      <div className="relative z-20 pointer-events-none text-center px-6 max-w-full">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="font-instrument text-[64px] md:text-[96px] lg:text-[124px] leading-[0.8] tracking-tighter text-[#1a1a1a] mb-10"
+          className="font-instrument text-[40px] md:text-[64px] lg:text-[88px] leading-tight tracking-tighter text-[#1a1a1a] mb-6 whitespace-nowrap"
         >
-          Event Flow. <br /> Ingested Calm.
+          Event Flow. Ingested Calm.
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans text-[20px] md:text-[24px] text-[#1a1a1a]/85 leading-relaxed font-normal max-w-3xl mx-auto mb-16"
+          className="font-sans text-[17px] md:text-[21px] text-[#1a1a1a]/85 leading-relaxed font-normal max-w-4xl mx-auto mb-10"
         >
-          High-performance, fault-tolerant ingestion engine for unstructured data. <br className="hidden md:block" /> 
+          High-performance, fault-tolerant ingestion engine for unstructured data. <br className="hidden lg:block" />
           Normalize, deduplicate, and aggregate millions of events with real-time reliability.
         </motion.div>
         
         <div className="pointer-events-auto">
           <button 
             onClick={onStart}
-            className="group relative bg-[#1a1a1a] text-white px-20 py-7 rounded-full font-sans text-[22px] font-bold hover:scale-105 active:scale-95 transition-all shadow-[0_25px_60px_rgba(0,0,0,0.4)] cursor-pointer overflow-hidden"
+            className="group relative bg-[#1a1a1a] text-white px-16 py-5 rounded-full font-sans text-[20px] font-bold hover:scale-105 active:scale-95 transition-all shadow-[0_20px_50px_rgba(0,0,0,0.3)] cursor-pointer overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             <span className="relative z-10">Get Started</span>
