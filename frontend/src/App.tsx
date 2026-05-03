@@ -99,41 +99,33 @@ export default function App() {
 
   return (
     <div className="app-layout">
-      {/* ── HEADER ── */}
       <header className="header">
-        <div className="logo" onClick={() => setShowDashboard(false)} style={{ cursor: 'pointer' }}>
-          <div className="logo-icon">⚡</div>
-          <span>EventFlow</span>
-        </div>
-        <div className="header-status">
-          <div className="status-dot" />
-          <span>Ingestion Engine Active</span>
+        <div className="header-container">
+          <div className="logo-section" onClick={() => setShowDashboard(false)} style={{ cursor: 'pointer' }}>
+            <div className="logo-icon">
+              <div className="logo-inner" />
+            </div>
+            <h1 className="logo-text">EventFlow</h1>
+          </div>
+          <div className="header-status">
+            <div className="status-dot" />
+            <span>Ingestion Engine Active</span>
+          </div>
         </div>
       </header>
 
-      {/* ── HERO BANNER ── */}
-      <section className="hero">
-        <div className="hero-text">
-          <h1>Event Monitoring Dashboard</h1>
-          <p>Real-time analytics and ingestion status for Carbon Crunch pipeline.</p>
-        </div>
-        <div className="hero-badges">
-          <div className="hero-badge blue">Production</div>
-          <div className="hero-badge cyan">Fault-Tolerant</div>
-          <div className="hero-badge purple">Auto-Normalizing</div>
-          <div className="hero-badge green">Healthy</div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
-      {/* ── MAIN CONTENT ── */}
       <main className="main-content">
-        <SubmitForm onSubmitSuccess={handleRefresh} onToast={addToast} />
-        
-        <div className="right-column">
-          <AggregationPanel refreshTrigger={refreshTrigger} onToast={addToast} key={`agg-${refreshTrigger}`} />
-          <EventsTable refreshTrigger={refreshTrigger} onToast={addToast} key={`table-${refreshTrigger}`} />
+        <div className="flex flex-col gap-8 w-full max-w-6xl mx-auto p-4">
+          {/* 1. Event Log (Now at the Top) */}
+          <EventsTable refreshTrigger={refreshTrigger} onToast={addToast} />
+          
+          {/* 2. Aggregated Insights */}
+          <AggregationPanel refreshTrigger={refreshTrigger} onToast={addToast} />
+          
+          {/* 3. Data Ingestion (Now at the Bottom) */}
+          <div className="w-full">
+            <SubmitForm onSubmitSuccess={handleRefresh} onToast={addToast} />
+          </div>
         </div>
       </main>
 
