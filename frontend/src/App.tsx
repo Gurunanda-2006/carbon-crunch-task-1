@@ -49,7 +49,7 @@ const TypingMessages = () => {
 // ── 3. Hero Component ──
 const Hero = ({ onStart }: { onStart: () => void }) => {
   return (
-    <section className="relative min-h-screen bg-[#F3F4ED] flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen bg-[#F3F4ED] flex flex-col items-center justify-start pt-48 md:pt-64 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <video 
           autoPlay 
@@ -69,7 +69,7 @@ const Hero = ({ onStart }: { onStart: () => void }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           onClick={onStart}
-          className="group relative bg-[#1a1a1a] text-white px-20 py-8 rounded-xl font-sans text-[24px] font-black hover:scale-105 active:scale-95 transition-all shadow-[0_30px_70px_rgba(0,0,0,0.6)] cursor-pointer overflow-hidden border border-white/20"
+          className="group relative bg-[#1a1a1a] text-white px-20 py-8 rounded-md font-sans text-[24px] font-black hover:scale-105 active:scale-95 transition-all shadow-[0_30px_70px_rgba(0,0,0,0.6)] cursor-pointer overflow-hidden border border-white/20"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           <span className="relative z-10 tracking-[0.2em] uppercase">Get Started</span>
