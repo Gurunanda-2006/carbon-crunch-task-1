@@ -45,6 +45,7 @@ export function AggregationPanel({ refreshTrigger, onToast }: AggregationPanelPr
     }
   }, [onToast]);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchAgg(); }, [fetchAgg, refreshTrigger]);
 
   const successRate = data

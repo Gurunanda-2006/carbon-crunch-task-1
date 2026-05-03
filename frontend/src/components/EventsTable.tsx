@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, Fragment } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { api } from '../api';
 import type { NormalizedEvent, FailedEvent } from '../types';
 
@@ -49,6 +49,7 @@ export function EventsTable({ refreshTrigger, onToast }: EventsTableProps) {
     }
   }, [onToast]);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchData(); }, [fetchData, refreshTrigger]);
 
   const events = tab === 'processed' ? processed : failed;

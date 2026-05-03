@@ -14,6 +14,7 @@ const icons: Record<Toast['type'], string> = {
   info:    'ℹ️',
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useToast() {
   const [toasts, setToasts] = useState<Toast[]>([]);
 

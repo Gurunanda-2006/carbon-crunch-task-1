@@ -40,8 +40,8 @@ export interface NormalizedEvent {
   // Joined from raw_events
   source: string;
   received_at: string;
-  raw_payload?: Record<string, any>;
-  normalized_payload?: Record<string, any>;
+  raw_payload?: Record<string, unknown>;
+  normalized_payload?: Record<string, unknown>;
 }
 
 export interface FailedEvent {
