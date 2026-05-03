@@ -176,11 +176,11 @@ export default function App() {
 
       {/* ── MAIN CONTENT ── */}
       <main className="main-content">
-        <SubmitForm onSubmitted={handleRefresh} addToast={addToast} />
+        <SubmitForm onSubmitSuccess={handleRefresh} onToast={addToast} />
         
         <div className="right-column">
-          <AggregationPanel key={`agg-${refreshTrigger}`} />
-          <EventsTable key={`table-${refreshTrigger}`} />
+          <AggregationPanel refreshTrigger={refreshTrigger} onToast={addToast} key={`agg-${refreshTrigger}`} />
+          <EventsTable refreshTrigger={refreshTrigger} onToast={addToast} key={`table-${refreshTrigger}`} />
         </div>
       </main>
 
