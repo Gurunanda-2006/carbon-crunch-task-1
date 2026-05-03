@@ -69,12 +69,14 @@ const Hero = ({ onStart }: { onStart: () => void }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           onClick={onStart}
-          className="group relative bg-[#1a1a1a] text-white px-24 py-8 font-sans text-[26px] font-black tracking-[0.2em] hover:bg-black hover:scale-105 active:scale-95 transition-all shadow-[0_40px_80px_rgba(0,0,0,0.6)] cursor-pointer overflow-hidden border border-white/10"
+          className="group relative bg-[#1a1a1a] text-white px-20 py-8 rounded-xl font-sans text-[24px] font-black hover:scale-105 active:scale-95 transition-all shadow-[0_30px_70px_rgba(0,0,0,0.6)] cursor-pointer overflow-hidden border border-white/20"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-          <span className="relative z-10 uppercase">Get Started</span>
+          <span className="relative z-10 tracking-[0.2em] uppercase">Get Started</span>
         </motion.button>
       </div>
+
+      <TypingMessages />
     </section>
   );
 };
