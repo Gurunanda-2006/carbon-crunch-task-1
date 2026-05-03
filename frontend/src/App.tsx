@@ -49,7 +49,7 @@ const TypingMessages = () => {
 // ── 3. Hero Component ──
 const Hero = ({ onStart }: { onStart: () => void }) => {
   return (
-    <section className="relative min-h-screen bg-[#F3F4ED] flex flex-col items-center justify-start pt-8 md:pt-12 lg:pt-16 overflow-hidden">
+    <section className="relative min-h-screen bg-[#F3F4ED] flex flex-col items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <video 
           autoPlay 
@@ -63,37 +63,18 @@ const Hero = ({ onStart }: { onStart: () => void }) => {
         <div className="absolute inset-0 bg-white/5" />
       </div>
 
-      <div className="relative z-20 pointer-events-none text-center px-4 max-w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="font-instrument text-[28px] md:text-[44px] lg:text-[56px] leading-none tracking-tighter text-[#1a1a1a] mb-4 whitespace-nowrap block w-full"
+      <div className="relative z-20 pointer-events-auto">
+        <motion.button 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          onClick={onStart}
+          className="group relative bg-[#1a1a1a] text-white px-24 py-8 font-sans text-[26px] font-black tracking-[0.2em] hover:bg-black hover:scale-105 active:scale-95 transition-all shadow-[0_40px_80px_rgba(0,0,0,0.6)] cursor-pointer overflow-hidden border border-white/10"
         >
-          Event Flow. Ingested Calm.
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans text-[14px] md:text-[17px] text-[#1a1a1a]/80 leading-relaxed font-normal max-w-2xl mx-auto mb-8"
-        >
-          High-performance, fault-tolerant ingestion engine for unstructured data. <br className="hidden md:block" />
-          Normalize, deduplicate, and aggregate millions of events with real-time reliability.
-        </motion.div>
-        
-        <div className="pointer-events-auto">
-          <button 
-            onClick={onStart}
-            className="group relative bg-[#1a1a1a] text-white px-10 py-4 rounded-full font-sans text-[18px] font-bold hover:scale-105 active:scale-95 transition-all shadow-[0_15px_40px_rgba(0,0,0,0.3)] cursor-pointer overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-            <span className="relative z-10">Get Started</span>
-          </button>
-        </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+          <span className="relative z-10 uppercase">Get Started</span>
+        </motion.button>
       </div>
-
-      <TypingMessages />
     </section>
   );
 };
